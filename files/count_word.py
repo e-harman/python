@@ -1,10 +1,9 @@
 # Count the # of times a single word appears in a file
 # 04/18/2017
-# 04/20/2017: has bug(s)
-#   Doesn't count word if there is punctuation after, 'gold;' for instance
 
 def count_word(file_handle, word):
     count = 0
+    terminators = [' ', '.', ';', ':', ',', '-']
     for line in file_handle:
         pos = 0
         line = line.strip()
@@ -13,8 +12,7 @@ def count_word(file_handle, word):
             pos = line.find(word, pos)
             if pos == -1:
                 break
-            # In the line below replace ==' ' with 'in' a list?
-            if ((pos - 1 == -1) or (line[pos - 1] == ' ')) and ((pos + len(word) == len(line)) or (line[pos + len(word)] == ' ')):
+            if ((pos - 1 == -1) or (line[pos - 1] in terminators)) and ((pos + len(word) == len(line)) or (line[pos + len(word)] in terminators)):
                 count = count + 1
             pos = pos + 1
     return count
