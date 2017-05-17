@@ -37,10 +37,10 @@ for line in fhand:
 sorted_lst = sorted(counts.items())
 
 for key, val in sorted_lst:
-    #print key, val
     #print key, val, round((float(val) / total) * 100,2)
     #print '%s %4d %#4.2g' % (key, val, round((float(val) / total) * 100,2))
-    print '%s %4d % 3.2f' % (key, val, (float(val) / total) * 100)
+    #print '%s %4d % 3.2f' % (key, val, (float(val) / total) * 100)
+    print '{:2} {:5} {:6.2f}'.format(key, val, (float(val) / total) * 100)
 print 'Total # of chars: ', total
 print 'Number of unique chars: ', len(counts.keys())
 
