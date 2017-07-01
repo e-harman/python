@@ -11,7 +11,8 @@ def crypt(f_plain, f_cipher, shift_val):
         ciphertext = ''
         line = line.rstrip()
         for char in line:
-            ciphertext+=(chr(ord(char) + shift_val))
+            if ord(char) < 154:
+                ciphertext+=(chr(ord(char) + shift_val))
         print ciphertext #Debug
         ciphertext = ciphertext + '\n'
         f_cipher.write(ciphertext)
@@ -32,7 +33,7 @@ print 'Choose the ciphertext file to create'
 ciphertext_fname = get_file()
 fhand_cipher = open(ciphertext_fname, 'w')
 
-shift = int(raw_input('Enter a shift value: '))
+shift = int(raw_input('Enter a shift value between -30 and 30: '))
 
 crypt(fhand_plain, fhand_cipher, shift)
 
